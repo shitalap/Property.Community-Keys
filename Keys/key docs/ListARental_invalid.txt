@@ -1,0 +1,37 @@
+internal void LARInvalid()
+        {
+            ListRentalPage();
+
+            try
+            {
+
+                //Enter 1 char for property title
+                Driver.ActionButton(Driver.driver, ExcelLib.ReadData(7, "Locator"), ExcelLib.ReadData(7, "Value"),
+                          ExcelLib.ReadData(3, "Title"));
+                Driver.wait(5);
+
+                //Verify error message for Property Title less than 10 characters
+                String prpmsg = Driver.GetTextValue(Driver.driver, ExcelLib.ReadData(29, "Locator"), ExcelLib.ReadData(29, "Value"));
+
+                Assert.IsTrue(prpmsg.Contains("Title must consist at least 10 characters"), prpmsg + "Title has valid data");
+                Base.test.Log(LogStatus.Pass, Details: "User cannot add less than 10 characters for Property Title");
+
+                //Blank Property Title
+                Driver.GetClear(Driver.driver, ExcelLib.ReadData(7, "Locator"), ExcelLib.ReadData(7, "Value"));
+                Driver.wait(2);
+
+                //Verify error message for Blank Property Title
+                String prpblkmsg = Driver.GetTextValue(Driver.driver, ExcelLib.ReadData(30, "Locator"), ExcelLib.ReadData(30, "Value"));
+                Assert.IsTrue(prpblkmsg.Contains("Please enter title."), prpblkmsg + "User has entered data");
+                Console.WriteLine("System cannot accept Blank Property Title");
+                Base.test.Log(LogStatus.Pass, Details: "User cannot leave Property Title field Blank");
+                Base.test.Log(LogStatus.Pass, Details: "User cannot save invalid or blank mandatory field on List A Rental Page");
+
+            }
+
+            catch (Exception e)
+            {
+                Base.test.Log(LogStatus.Fail, "User cannot Save - Property is not listed for Rent", e);
+            }
+
+        }

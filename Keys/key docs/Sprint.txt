@@ -1,0 +1,69 @@
+using Keys.Pages;
+using NUnit.Framework;
+using RelevantCodes.ExtentReports;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Keys.Global
+{
+    class Sprint_1
+    {
+        [TestFixture]
+        [Category("Sprint_1")]
+
+        class Sprint_1_Administration : Base
+        {
+
+            [Test]
+            public void ListaRental()
+            {
+                // creates a toggle for the given test, adds all log events under it 
+
+                test = extent.StartTest("List a Rental");
+                Owner_ListARental LRentalobj = new Owner_ListARental();
+                LRentalobj.ListRentalPage();     
+                LRentalobj.LARSave();
+                LRentalobj.LARverify();
+                //  test.Log(LogStatus.Pass, "Owner-List A Rental test case passed");
+            }
+
+            [Test]
+            public void ListAsaRental()
+            {
+                // creates a toggle for the given test, adds all log events under it 
+
+                test = extent.StartTest("List As a Rental");
+                Owner_Properties LasRentalobj = new Owner_Properties();
+                LasRentalobj.ListaRentalPage();
+                Owner_ListARental LRentalobj = new Owner_ListARental();
+                LRentalobj.LARSave();
+                LRentalobj.LARverify();
+                // test.Log(LogStatus.Pass, "Owner-List As Rental test case passed");
+            }
+
+            [Test]
+            public void PODBNListing()
+            {
+                // creates a toggle for the given test, adds all log events under it
+                test = extent.StartTest(" ");
+                OwnerDashboard LstPODBobj = new OwnerDashboard();
+                LstPODBobj.NListingPage();
+                Owner_ListARental LRentalobj = new Owner_ListARental();
+                LRentalobj.LARSave();
+                LRentalobj.LARverify();
+
+            }
+
+
+            [Test]
+            public void ListaRental_invalid()
+            {
+             // creates a toggle for the given test, adds all log events under it 
+                test = extent.StartTest(" ");
+                Owner_ListARental LRentalobj = new Owner_ListARental();
+                LRentalobj.LARInvalid();
+                
+            }

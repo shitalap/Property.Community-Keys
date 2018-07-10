@@ -1,0 +1,193 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support;
+using OpenQA.Selenium.Support.PageObjects;
+using Keys.Global;
+using Keys.Test;
+using Keys.Pages;
+using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
+using RelevantCodes.ExtentReports;
+
+namespace Keys.Test
+{
+    class Owner_ListARental
+    {
+        internal Owner_ListARental()
+        {
+            PageFactory.InitElements(Driver.driver, this);
+        }
+
+        //Click on Owner Link
+        [FindsBy(How = How.XPath, Using = "//a[contains(.,'Owners ')]")]
+        private IWebElement Ownertab { get; set; }
+
+        //Click on Properties option from OwnerDropDown
+        [FindsBy(How = How.XPath, Using = "//a[@href='/PropertyOwners']")]
+        private IWebElement Propertiesoption { get; set; }
+
+        //Click on List a Rental Link
+        [FindsBy(How = How.XPath, Using = "//a[@href='/PropertyOwners/Property/ListRental?propId=-1']")]
+        private IWebElement ListRentlink { get; set; }
+
+        // [FindsBy(How = How.XPath, Using = "//option[@value='4492']")]
+        // private IWebElement selectp { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[contains(@data-bind,'textInput : Title')]")]
+        private IWebElement stitletxt { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[contains(@data-bind,'textInput : MovingCost')]")]
+        private IWebElement movc { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//textarea[@data-bind='textInput : RentalDescription']")]
+        private IWebElement destxt { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@data-bind='textInput : TargetRent']")]
+        private IWebElement trgrent { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@data-bind='textInput : Furnishing']")]
+        private IWebElement trgfurn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@name='AvailableDate']")]
+        private IWebElement availdate { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@data-bind='textInput : OccupantCount']")]
+        private IWebElement occcnt { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[contains(@data-bind,'textInput : IdealTenant')]")]
+        private IWebElement Idealtnt { get; set; }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='add-new-property']/fieldset/div[5]/div[2]/div/select")]
+        private IWebElement pets { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button[@class='btn btn-success']")]
+        private IWebElement Lsavebtn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[@id='searchId']")]
+        private IWebElement searchtxt { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button[@type='submit']")]
+        private IWebElement searchbtn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = ".//*[@id='main-content']/section/div[1]/div[3]/div[1]/div/div[1]/div[2]/div[2]/h4")]
+        private IWebElement proptxt { get; set; }
+
+        internal void ListRentalPage()
+        {
+            // var screenShotPath = ScreenshotHelpers.Capture(DriverBase.driver, "Login url");
+            var screenShotPath = SaveScreenShotClass.SaveScreenshot(Driver.driver, "Login url");
+
+            // Populating the data from Excel
+            ExcelLib.PopulateInCollection(Base.ExcelPath, "ListARental");
+
+            // Navigating to Your Proeperty using value from Excel
+           //  Driver.driver.Navigate().GoToUrl(ExcelLib.ReadData(2, "url"));
+           //Driver.wait(2);
+
+            //Click on OwnerTab
+             Driver.wait(2);
+             Ownertab.Click();
+
+            //Select Properties option from Owner Drop down list
+             Driver.wait(2);
+             Propertiesoption.Click();
+            
+            //Click on List Rental Link
+            Driver.wait(2);
+            ListRentlink.Click();
+
+            // Populating the data from Excel
+            ExcelLib.PopulateInCollection(Base.ExcelPath, "ListARental");
+
+            Driver.wait(2);
+            IWebElement element = Driver.driver.FindElement(By.XPath("//select[@data-bind='value : PropertyId']"));
+            SelectElement selectelmn = new SelectElement(element);
+            selectelmn.SelectByValue("4492");
+
+            //Selecting the Property 
+            Driver.wait(2);
+            //  selectp.Click();
+
+            //Entering Title 
+            Driver.wait(2);
+            stitletxt.SendKeys(ExcelLib.ReadData(2, "Title"));
+
+            //Enter Moving Cost
+            Driver.wait(2);
+            movc.SendKeys(ExcelLib.ReadData(2, "MovingCost"));
+
+            //Enter Description
+            Driver.wait(2);
+            destxt.SendKeys(ExcelLib.ReadData(2, "Description"));
+
+            //Enter Target Rent
+            Driver.wait(2);
+            trgrent.SendKeys(ExcelLib.ReadData(2, "TargetRent"));
+
+            //Enter Furnishing
+            Driver.wait(2);
+            trgfurn.SendKeys(ExcelLib.ReadData(2, "Furnishing"));
+
+            //Enter Available Date
+            Driver.wait(2);
+            availdate.SendKeys(ExcelLib.ReadData(2, "AvailableDate"));
+
+            //Enter Ideal Tenant
+            Driver.wait(2);
+            Idealtnt.SendKeys(ExcelLib.ReadData(2, "IdealTenant"));
+
+            //Enter Occupant Count
+            Driver.wait(2);
+            occcnt.SendKeys(ExcelLib.ReadData(2, "OccupantCount"));
+
+            //Enter Pets
+            Driver.wait(2);
+            pets.SendKeys(ExcelLib.ReadData(2, "PetsAllowed"));
+            Driver.wait(2);
+           
+            //scroll the page down
+            ((IJavaScriptExecutor)Driver.driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight - 100)");
+           
+            //Click on Save
+            Driver.wait(2);
+            Lsavebtn.Click();
+
+            Driver.wait(2);
+            // Clicking on Pop up message
+            IAlert simpleAlert = Driver.driver.SwitchTo().Alert();
+
+            // '.Text' is used to get the text from the Alert
+            String alertText = simpleAlert.Text;
+            Console.WriteLine("Alert text is " + alertText);
+
+            // '.Accept()' is used to accept the alert '(click on the Ok button)'
+            simpleAlert.Accept();
+
+            //scroll the page down
+           // ((IJavaScriptExecutor)Driver.driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight - 150)");
+
+            // Driver.driver.Navigate().GoToUrl("http://dev.property.community/PropertyOwners/Property/RentalProperties");
+            Driver.wait(2);
+
+            searchtxt.SendKeys(ExcelLib.ReadData(2, "Title"));
+            Driver.wait(2);
+
+            searchbtn.Click();
+            Driver.wait(2);
+
+            string astxt = proptxt.Text;
+
+            
+
+           // Assert.IsTrue(astxt.Contains("Property Test"));
+            
+               
+
+        }
+
+    }
+}

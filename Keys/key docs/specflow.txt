@@ -1,0 +1,41 @@
+Feature: ListARentalFeature
+	
+In order to Navigate to List A Rental Page
+
+As a Property Owner
+
+	
+I want to list my property for Rental
+
+
+@mytag
+
+Scenario: ListARental as Property Owner
+	
+Given I Navigate to List A Rental Page
+	
+And I have entered all valid and mandatory fields
+	
+When I press Save
+	
+Then the property is listed in Rental Listings and Tenant Applications
+
+
+Feature: POListARental
+	
+In order to navigate to List A Rental Page
+	
+As a Property Owner
+    I want to be told to list my property for Rental
+
+	
+	
+
+@mytag
+Scenario: List A Rental
+	
+Given I Navigate to List A Rental Page
+	
+When I enter all the valid fields and press Save
+	
+Then property is listed as Rental

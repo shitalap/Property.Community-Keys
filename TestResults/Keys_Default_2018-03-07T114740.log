@@ -1,0 +1,16 @@
+﻿2018-03-07T11:45:36.8899923+13:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2018-03-07T11:45:37.3743105+13:00;VSTestExecutionThread;Info;SpecRun Evaluation Mode: Please purchase at http://www.specflow.org/plus to remove test execution delay.
+2018-03-07T11:45:37.3763118+13:00;VSTestExecutionThread;Info;SpecRun: running tests in C:\Users\Anyone\Desktop\Keys-2018\Keys\bin\Debug\Keys.dll
+2018-03-07T11:45:37.3783160+13:00;VSTestExecutionThread;Info;Profile: Default
+2018-03-07T11:45:42.8840144+13:00;VSTestExecutionThread;Info;Log file: file:///C:\Users\Anyone\Desktop\Keys-2018\TestResults\Keys_Default_2018-03-07T114537.log
+2018-03-07T11:45:42.8870220+13:00;VSTestExecutionThread;Info;SpecFlow+Runner execution finished
+2018-03-07T11:47:40.8722322+13:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2018-03-07T11:47:40.9092574+13:00;VSTestExecutionThread;Info;SpecRun Evaluation Mode: Please purchase at http://www.specflow.org/plus to remove test execution delay.
+2018-03-07T11:47:40.9112592+13:00;VSTestExecutionThread;Info;SpecRun: running tests in C:\Users\Anyone\Desktop\Keys-2018\Keys\bin\Debug\Keys.dll
+2018-03-07T11:47:40.9132624+13:00;VSTestExecutionThread;Info;Profile: Default
+Total: 0
+Succeeded: 0
+Ignored: 0
+Pending: 0
+Skipped: 0
+Failed: 0
